@@ -18,8 +18,11 @@ end
 
 
 get '/' do	
-	@number = params["number"]
-	@string = cipher(params["string"], @number.to_i)
+	# @number = params["number"]
+	# @string = cipher(params["string"], @number.to_i)
+
+	@number = 0
+	@string = "Hello World!"
 
 	erb :index, local => {
 		:string => @string,
