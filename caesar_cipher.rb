@@ -1,18 +1,36 @@
-class CaesarCipher
-	attr_accessor :string, :number
+require 'sinatra'
+if development? 
+	require 'sinatra/reloader'
 end
 
-puts "Give me a word..."
-@string = gets.chomp
-puts "Now a number..."
-@number = gets.chomp
 
-def caesar_cipher(string, number)
+
+def cipher(string, number)
+	return "" if string.nil?
 	word = String.new
 	string.split("").each do |char| 	
 	 	char.match(/[\s\W]+/) != nil ? "" : number.to_i.times { char = char.next }
  		word += char[-1]
- 	end
+	end
+	# puts word
 	return word
+end	
+
+
+get '/' do	
+	@number = params["number"]
+	@string = cipher(params["string"], @number.to_i)
+
+	erb :index, local => {
+		:string => @string,
+		:number => @number
+	}
 end
-puts caesar_cipher(@string, @number)
+
+
+# puts "Give me a word..."
+# string = gets.chomp
+# puts "Now a number..."
+# number = gets.chomp
+
+# cipher = CaesarCipher.new(string, number)
