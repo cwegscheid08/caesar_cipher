@@ -18,16 +18,23 @@ end
 
 
 get '/' do	
-	# @number = params["number"]
-	# @string = cipher(params["string"], @number.to_i)
+	@number = params["number"]
+	@string = params["message"]
+	@message = cipher(@string, @number.to_i)
 
-	@number = 0
-	@string = "Hello World!"
+	# @message = cipher(params["message"], params["number"].to_i)
 
-	erb :index, local => {
+	# puts "MESSAGE:#{@message}"
+	# puts "STRING:#{@string}"
+	# puts "NUMBER:#{@number}"
+
+	erb :index, :local => {
+		:message => @message,
 		:string => @string,
 		:number => @number
 	}
+
+	# "I'm here"
 end
 
 
