@@ -22,25 +22,11 @@ get '/' do
 	@string = params["message"]
 	@message = cipher(@string, @number.to_i)
 
-	# @message = cipher(params["message"], params["number"].to_i)
-
-	# puts "MESSAGE:#{@message}"
-	# puts "STRING:#{@string}"
-	# puts "NUMBER:#{@number}"
 
 	erb :index, :local => {
 		:message => @message,
 		:string => @string,
 		:number => @number
 	}
-
-	# "I'm here"
 end
 
-
-# puts "Give me a word..."
-# string = gets.chomp
-# puts "Now a number..."
-# number = gets.chomp
-
-# cipher = CaesarCipher.new(string, number)
